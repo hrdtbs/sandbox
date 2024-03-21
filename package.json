@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "npx serve ./",
     "format": "prettier --write ."
   },
   "keywords": [],

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS light-dark()</title>
+  </head>
+
+  <body>
+    <style
+      contenteditable
+      style="
+        display: block;
+        white-space: pre;
+        height: 240px;
+        overflow: auto;
+        border: 1px solid;
+      "
+    >
+      :root {
+        color-scheme: light dark;
+      }
+      * {
+        background-color: light-dark(ghostwhite, darkslategray);
+        color: light-dark(darkslategray, ghostwhite);
+      }
+      code {
+        color: light-dark(tomato, gold);
+      }
+      .light {
+        color-scheme: light;
+      }
+      .dark {
+        color-scheme: dark;
+      }
+
+      @scope (.toggle) {
+        :scope {
+          color-scheme: light;
+        }
+        :scope:has(#dark-theme:checked) {
+          color-scheme: dark;
+        }
+      }
+    </style>
+    <section>
+      <h2>Auto</h2>
+      <p>
+        <code> color-scheme: light dark; </code>
+        により、ユーザーの設定に応じて、lightとdarkテーマが切り替わる。
+      </p>
+    </section>
+    <section class="light">
+      <h2>Light</h2>
+      <p><code>color-scheme: light;</code> によりlightテーマになる。</p>
+    </section>
+    <section class="dark">
+      <h2>Dark</h2>
+      <p><code>color-scheme: dark;</code> によりdarkテーマになる。</p>
+    </section>
+    <section class="toggle">
+      <h2>ex.) Toggle Theme</h2>
+      <label>
+        <input type="checkbox" id="dark-theme" />
+        <span>Dark Mode</span>
+      </label>
+      <section>
+        <p><code>color-scheme: dark;</code> によりdarkテーマになる。</p>
+      </section>
+    </section>
+  </body>
+</html>
