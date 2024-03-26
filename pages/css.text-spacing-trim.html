@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS text-spacing-trim</title>
+  </head>
+
+  <body>
+    <style>
+    h3{
+        font-size: 16px;
+    }
+    .caption {
+        font-size: 12px;
+    }
+    .text{
+        width: 22em;
+        line-height: 24px;
+        background-image: 
+            linear-gradient(to bottom, rgba(0,0,0,.2) 1px, transparent 0),
+            linear-gradient(to left, rgba(0,0,0,.2) 1px, transparent 0);
+
+        background-size: 1em 24px;
+
+        background-position: top left;
+        background-origin: padding-box;
+        border: 1px solid rgba(0,0,0,.2);
+        border-top: none;
+        border-right: none;
+    }
+    </style>
+    <textarea style="width: 100%" rows="3">「「明朝体（みんちょうたい）」は、漢字の書体の「一種で、「セリフ書体」に分類される。漢字や仮名の表示や印刷において標準的な書体である。中国語では一般に宋体といい、明体とも呼ばれる。」</textarea>
+    <section style="text-spacing-trim:normal;">
+        <h3>text-spacing-trim: normal;</h3>
+        <p class="caption">
+            隣接しているペアと、フィットしていない場合行末をトリムする。
+            行頭はトリムしない。
+        </p>
+        <p class="text"></p>
+    </section>
+    <section style="text-spacing-trim:trim-start;">
+        <h3>text-spacing-trim: trim-start;</h3>
+        <p class="caption">normalに加えて、行頭もトリムする。</p>
+        <p class="text"></p>
+    </section>
+    <section style="text-spacing-trim:space-all;">
+        <h3>text-spacing-trim: space-all;</h3>
+        <p class="caption">何もトリムしない</p>
+        <p class="text"></p>
+    </section>
+    <section style="text-spacing-trim:space-first;">
+        <h3>text-spacing-trim: space-first;</h3>
+        <p class="caption">normalに加えて、1行目以外の行頭をトリムする。
+            またはtrim-startの1行目の行頭をトリムしない版。
+        </p>
+        <p class="text"></p>
+    </section>
+  </body>
+  <script>
+    const updateText = () => {
+        const value = document.querySelector("textarea").value
+        const texts = document.querySelectorAll('p.text');
+        texts.forEach((text) => {
+            text.textContent = value;
+        });
+    }
+    updateText();
+    
+    document.querySelector("textarea").addEventListener("change", () => {
+        updateText()
+    })
+</script>
+</html>
